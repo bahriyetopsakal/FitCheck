@@ -7,18 +7,19 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "storage"
+    "storage",
+    "tabs"
   ],
-  
+
   "host_permissions": [
-    "*://*.amazon.com/*",
-    "*://*.zara.com/*",
+    "http://*/*",   
+    "https://*/*",  
     "https://get-firebase-key-gkxrzhyecq-ew.a.run.app/*",
     "https://get-firebase-key-gkxrzhyecq-uc.a.run.app/*",
     "https://europe-west1-fitcheck-475119.cloudfunctions.net/*",
     "https://us-central1-fitcheck-475119.cloudfunctions.net/*" 
   ],
-  
+
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://europe-west1-fitcheck-475119.cloudfunctions.net https://us-central1-fitcheck-475119.cloudfunctions.net https://get-firebase-key-gkxrzhyecq-ew.a.run.app https://get-firebase-key-gkxrzhyecq-uc.a.run.app https://*.googleapis.com https://*.firebaseapp.com https://securetoken.googleapis.com https://identitytoolkit.googleapis.com"
   },
@@ -26,17 +27,6 @@
   "background": {
     "service_worker": "background.js"
   },
-  
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*.amazon.com/*",
-        "*://*.zara.com/*"
-      ],
-      "js": ["content.js"],
-      "run_at": "document_end"
-    }
-  ],
   
   "action": {
     "default_popup": "popup.html",
@@ -52,7 +42,9 @@
   "web_accessible_resources": [
     {
       "resources": ["styles/*", "assets/*"],
-      "matches": ["*://*.amazon.com/*", "*://*.zara.com/*"]
+      "matches": ["<all_urls>"] 
+      // Not: Matches'i <all_urls> olarak değiştirdim, tüm sitelerde çalıştığınız için daha doğru olur.
     }
   ]
 }
+
